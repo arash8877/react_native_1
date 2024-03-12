@@ -1,4 +1,5 @@
 import { useState } from "react";
+import GoalItem from "./components/GoalItem";
 import {
   Button,
   StyleSheet,
@@ -38,11 +39,7 @@ export default function App() {
         <FlatList //if the data property is a list of objects and that object includes a key, then
           data={courseGoals} // FlatList automatically use that key
           renderItem={(itemData) => {
-            return (
-              <View style={styles.goalItem}>
-                <Text style={styles.goalText}>{itemData.item.text}</Text>
-              </View>
-            );
+            return <GoalItem text={itemData.item.text}/>;
           }}
           keyExtractor={(item, index) => {
             return item.id;
@@ -88,14 +85,5 @@ const styles = StyleSheet.create({
   },
   goalsContainer: {
     flex: 5,
-  },
-  goalItem: {
-    margin: 8,
-    padding: 8,
-    borderRadius: 6,
-    backgroundColor: "#5e0acc",
-  },
-  goalText: {
-    color: "white",
   },
 });
