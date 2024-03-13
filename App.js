@@ -1,14 +1,24 @@
 import { useState } from "react";
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
-import { StyleSheet, View, ScrollView, FlatList } from "react-native";
+import { StyleSheet, View, ScrollView, FlatList, Button } from "react-native";
 
 export default function App() {
   const [courseGoals, setCourseGoals] = useState([]);
+  const [modalIsVisible, setModalIsVisible] = useState(false);
+
+  const startAddGoalHandler = () => {
+    setModalIsVisible(true);
+  };
 
   return (
     <View style={styles.appContainer}>
-      <GoalInput setCourseGoals={setCourseGoals} />
+      <Button
+        title="Add New Goal"
+        color="#5e0acc"
+        onPress={startAddGoalHandler}
+      />
+      <GoalInput showModal={modalIsVisible} setCourseGoals={setCourseGoals} />
       <View style={styles.goalsContainer}>
         <FlatList //if the data property is a list of objects and that object includes a key, then
           data={courseGoals} // FlatList automatically use that key
