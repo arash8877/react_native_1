@@ -1,8 +1,11 @@
 import { StyleSheet, View, TextInput, Button, Modal } from "react-native";
 import { useState } from "react";
 
-const GoalInput = ({ setCourseGoals, showModal }) => {
+const GoalInput = ({ setCourseGoals, modalIsVisible, endAddGoalHandler }) => {
   const [enteredGoalText, setEnteredGoalText] = useState("");
+
+
+
 
   const goalInputHandler = (enteredText) => {
     setEnteredGoalText(enteredText);
@@ -14,9 +17,16 @@ const GoalInput = ({ setCourseGoals, showModal }) => {
       { text: enteredGoalText, id: Math.random().toString() },
     ]);
     setEnteredGoalText("");
+    endAddGoalHandler();
   };
+
+
+
+
+
+
   return (
-    <Modal visible={showModal} animationType="slide">
+    <Modal visible={modalIsVisible} animationType="slide">
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.textInput}
@@ -29,7 +39,7 @@ const GoalInput = ({ setCourseGoals, showModal }) => {
             <Button title="Add Goal" onPress={addGoalHandler} />
           </View>
           <View style={styles.button}>
-            <Button title="Cancel" />
+            <Button title="Cancel" onPress={endAddGoalHandler} />
           </View>
         </View>
       </View>

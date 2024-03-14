@@ -11,6 +11,10 @@ export default function App() {
     setModalIsVisible(true);
   };
 
+  const endAddGoalHandler = () => {
+    setModalIsVisible(false);
+  };
+
   return (
     <View style={styles.appContainer}>
       <Button
@@ -18,7 +22,11 @@ export default function App() {
         color="#5e0acc"
         onPress={startAddGoalHandler}
       />
-      <GoalInput showModal={modalIsVisible} setCourseGoals={setCourseGoals} />
+      <GoalInput
+        setCourseGoals={setCourseGoals}
+        modalIsVisible={modalIsVisible}
+        endAddGoalHandler={endAddGoalHandler}
+      />
       <View style={styles.goalsContainer}>
         <FlatList //if the data property is a list of objects and that object includes a key, then
           data={courseGoals} // FlatList automatically use that key
